@@ -1,0 +1,37 @@
+<div class="columns container">
+    <div class="column">
+        <nav class="panel">
+            <h3 class="panel-heading">Menu</h3>
+            {{#each burger}} {{#unless this.eat}}
+            <li class="panel-block">
+                <form action="/{{this.id}}?_method=PUT" method="POST">
+                    <input type="hidden" name="eat" value="true">
+                    <button type="submit">eat it!</button>
+                </form>
+                {{name}}
+
+            </li>
+            {{/unless}} {{/each}}
+    </div>
+    <div class="column">
+        <h2>What are you looking for?</h2>
+        <form class="create-update-form" action="/" method="POST">
+            <div class='form-group'>
+                <textarea class='field' type='text' id='burger' name="name" placeholder="Add your burger" required></textarea>
+            </div>
+            <button type="submit">Add to menu</button>
+        </form>
+    </div>
+    <div class="column">
+        <nav class="panel">
+            <h2 class="panel-heading">Eated</h2>
+            <ul>
+                {{#each burger}} {{#if this.eat}}
+                <li class="panel-block">
+                    {{name}}
+                </li>
+                {{/if}} {{/each}}
+            </ul>
+        </nav>
+    </div>
+</div>
